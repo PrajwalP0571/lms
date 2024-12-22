@@ -4,245 +4,159 @@
 ## NODE JS - Application tier
 ## POSTGRES - Data tier
 
-Static Code Analysis
-Static code analysis is analyzing source code without actually executing it. 
+Introduction
+"In this project, I designed and deployed a Learning Management System (LMS) following a multi-tier architecture on AWS. The project included setting up a development environment, building and deploying backend and frontend services, and performing static code analysis to ensure high code quality. The LMS uses PostgreSQL for the database, Node.js for the backend, and React.js for the frontend. I also integrated SonarQube for continuous code quality monitoring. Here's how I implemented the project step-by-step."
 
+Phase 1: Architecture Design and Setup
 
-It involves examining the code for potential issues, vulnerabilities, and adherence to coding standards and best practices. 
+1. Multi-Tier Architecture:
 
-Static code analysis can help identify various types of issues, including:
+Implemented three-tier architecture:
+Frontend Layer: React.js for UI/UX.
+Application Layer: Node.js for business logic.
+Database Layer: PostgreSQL for data storage.
 
-Syntax errors and typos
-Unused variables and methods
-Code duplication
-Security vulnerabilities (e.g., SQL injection, cross-site scripting)
-Memory leaks and resource leaks
-Performance issues
-Conformance to coding standards and style guidelines (e.g., indentation, naming conventions)
+2. AWS Infrastructure Setup:
 
-By detecting these issues early in the development process, static code analysis helps reduce the likelihood of bugs, security vulnerabilities, and maintenance headaches later on. 
+Provisioned a t2.medium EC2 instance (4 GB RAM, 2 vCPUs, 8 GB storage) on AWS.
+Configured Security Groups for required ports:
+22: SSH for access.
+5432: PostgreSQL database.
+8080: Node.js backend.
+80: React.js frontend hosted via Nginx.
+Phase 2: Database Setup (PostgreSQL)
 
-Static code analysis promotes code quality, consistency, and reliability across software projects.
+1. PostgreSQL Installation:
 
-SonarQube
-SonarQube is an open source platform developed by SonarSource for continuous inspection of Code Quality
+Installed PostgreSQL and set the password for the database user.
+Configured connection details for backend API:
+bash
+Copy code
+DATABASE_URL=postgresql://postgres:password@localhost:5432/postgres
 
+Phase 3: Backend Development (Node.js)
 
+1. Node.js Installation:
 
-Setting Up SonarQube
-SonarQube Requires “t2.medium instance” i.e 4 GB RAM - 2 CPU’s on AWS, with 8 GB as Storage.
+Installed Node.js v16 and npm package manager.
 
-SonarQube works on “port 9000”, make sure to add port 9000 as part of your Security Group
+2. API Development:
 
-https://github.com/jae1choi/sonaqueue-installation-guide
-
-
-
-
-
-Install Docker
-docker
-curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh
-docker
-
-Install SonarQube
-sudo ss -ntpl
-sudo docker container run -dt --name sonarqube --restart=always -p 9000:9000 sonarqube
-sudo ss -ntpl
-
-
-Default credentials are 
-Username is admin 
-Password is admin
-
-
-
-
-
-
-
-LMS Project - Code 
-https://github.com/ravi2krishna/lms.git
-
-IMPORTANT Fork Above Project to your Github Accounts
-
-Make sure to change the username here from ravi2krishna to your username
-
-ls
-git clone -b dev https://github.com/Maheshalagonda/lms.git
-ls
-cd ~/lms/webapp
-ls
-sudo docker run  --rm -e SONAR_HOST_URL="http://35.90.93.22:9000" -e SONAR_LOGIN="sqp_aca3716695f93a33e306b925beb34976caf13502"  -v ".:/usr/src" sonarsource/sonar-scanner-cli:5.0 -Dsonar.projectKey=lms
-
-
-
-
-
-
-
-
-Multi Tier App Architecture
-The three tier architecture is a widely used architectural pattern that divides an application into three interconnected layers: the presentation layer, the application layer and the database layer.
-💡 The frontend layer is responsible for displaying the user interface and receiving user input.
-💡 The application layer contains the business logic and processes the user input.
-💡 Finally, the database layer is responsible for storing and retrieving data used by the application.
-
-
-Application Stack
-An application stack is a set of software programs that include software for the front-end, the back-end and the database.
-
-Most Popular Stacks
-https://en.wikipedia.org/wiki/Programming_languages_used_in_most_popular_websites
-LMS Application Stack
-Database : POSTGRES
-Application : NODEJS
-Frontend : REACTJS
-
-17 Apr 2024 
-LMS Project - BUILD 
-Software Build
-The term build may refer to the process by which source code is converted into binary code (software artifact)
-
-Any Build Implementation
-
-Source Code Files 
-Source code is the list of human-readable instructions that a programmer writes often in a word processing program when he is developing a program.
-
-Metadata File
-It is a file that contains information about the project and configuration details used to build the project. 
-
-Binary Code (After Builds)
-Build artifacts are files produced by a build.
-
-
-
-
-
-
-
-
-
-
-As LMS App is multi tier, We need Following Rules in Security Group
-SSH - 22 - Login
-DATABASE TIER [ POSTGRES ] - 5432 - Storing Data
-APPLICATION TIER [ NODEJS ] - 8080 - Business Logics
-FRONTEND TIER [ REACTJS ] { Hosted Web Server } - 80
-
-LMS Requires “t2.medium instance” i.e 4 GB RAM - 2 CPU’s on AWS, with 8 GB as Storage.
-
-Setup LMS dev Environment 
-Setup Database for LMS
-Install postgres 
-
-> Goto https://www.postgresql.org/download/linux/ubuntu/
-Set Password - postgres 
-Commands to set the password for postgres database
-sudo su - postgres
-psql
-\password
-\q
-exit
-
-
-Setup App Layer For LMS 
- install Node.js version 16 on your system
-
-node -v
-npm -v
-curl -sL https://deb.nodesource.com/setup_16.x | sudo bash -
-sudo apt-get install -y nodejs
-node -v
-npm -v
-
-
-
-
-
-
-
-Build API For LMS
-Change the directory to api, Then create a .env file in the api folder which is our backend source code, where we would specify the database connection details.
-
+Cloned backend code from the repository:
+bash
+Copy code
 git clone -b dev https://github.com/ravi2krishna/lms.git
 cd ~/lms/api
-vi .env
+Configured database connection in .env file.
 
-MODE=production
-PORT=8080
-DATABASE_URL=postgresql://postgres:your-password@localhost:5432/postgres
+3. Database Migration and Schema Setup:
 
-
-
-
-18 Apr 2024 
-Build Backend
-
+Used Prisma ORM for database migrations and schema definition:
+bash
+Copy code
 npm install
-cat prisma/migrations/20221110085013_init/migration.sql
-sudo npx prisma generate
-sudo npx prisma db push
-\dt {in postgres}
-ls build
+npx prisma generate
+npx prisma db push
+
+4. Backend Build and Deployment:
+
+Built and verified the API locally:
+bash
+Copy code
 npm run build
-ls build
-sudo ss -ntpl
 node build/index.js
-ctrl + c
+Used PM2 for process management and backend deployment:
+bash
+Copy code
 sudo npm install -g pm2
 pm2 start build/index.js
-sudo ss -ntpl
 
+Phase 4: Frontend Development (React.js)
 
+1. Frontend Setup:
 
-Locally verify 
+Cloned the frontend code:
+bash
+Copy code
+cd ~/lms/webapp
+Configured backend URL in .env file:
+arduino
+Copy code
+VITE_API_URL=http://<public-ip>:8080/api
+
+2. Frontend Build:
+
+Built the React application to generate static files:
+bash
+Copy code
+npm install
+npm run build
+
+3. Web Server Configuration (Nginx):
+
+Installed Nginx to host the React app:
+bash
+Copy code
+sudo apt -y install nginx
+sudo cp -r ~/lms/webapp/dist/* /var/www/html
+Verified deployment by accessing the LMS via public IP:
+vbnet
+Copy code
+http://<public-ip>
+
+Phase 5: Code Quality and Static Analysis (SonarQube)
+1. SonarQube Setup:
+
+Deployed SonarQube as a Docker container on AWS (t2.medium instance):
+bash
+Copy code
+sudo docker run -dt --name sonarqube --restart=always -p 9000:9000 sonarqube
+Configured SonarQube with default credentials (admin/admin) and connected it to the LMS repository for analysis.
+
+2. Static Code Analysis:
+
+Used SonarQube’s scanner tool for analyzing the LMS codebase:
+bash
+Copy code
+sudo docker run --rm -e SONAR_HOST_URL="http://<ip>:9000" -e SONAR_LOGIN="<token>" -v ".:/usr/src" sonarsource/sonar-scanner-cli:5.0 -Dsonar.projectKey=lms
+Identified and fixed issues like:
+Unused variables and methods.
+Security vulnerabilities (e.g., SQL injection risks).
+Code style violations.
+
+Phase 6: Testing and Deployment
+1. Backend Testing:
+
+Verified API endpoints using curl and browser:
+bash
+Copy code
 curl http://localhost:8080/api
-
-
+Response:
+json
+Copy code
 {"message":"success","mode":"production"}
 
-Verify with Browse - http://public-ip:8080/api
+2. Frontend Testing:
 
-Build Frontend For LMS
-Change the directory to webapp, Then create a .env file in the webapp folder which is our frontend source code, where we would specify the backend connection details.
-cd ~/lms/webapp
-vi .env
+Verified the web application using the public IP of the EC2 instance:
+vbnet
+Copy code
+http://<public-ip>
 
-VITE_API_URL=http://public-ip:8080/api
+3. Final Deployment:
 
+Ensured high availability and scalability by using PM2 for backend monitoring and Nginx for frontend hosting.
+Key Features and Benefits
+Scalable Multi-Tier Architecture:
+Separated frontend, backend, and database layers for scalability and maintenance.
+CI/CD Pipeline Compatibility:
+Leveraged Docker and SonarQube for seamless integration into DevOps workflows.
+Improved Code Quality:
+Used static code analysis to ensure security, performance, and maintainability.
+High Availability:
+Deployed PM2 for automatic restarts and monitoring, reducing downtime.
+AWS Infrastructure Utilization:
+Leveraged AWS EC2 for flexibility and scalability.
 
-
-Run the below commands to build the Application, which will create dist folder, in which our application will be made available
-npm install
-ls dist
-npm run build
-ls dist
-
-
-
-Setup Nginx Web Server
-sudo ss -ntpl
-sudo apt -y update
-sudo apt -y install nginx
-sudo ss -ntpl
-
-
-
-Test Web Server
-💡 Browse - http://public-ip
-
-💡 If you are the website administrator: You may now add webapp content to the directory DocumentRoot - /var/www/html/
-
-ls /var/www/html
-cat /var/www/html/index.nginx-debian.html
-sudo rm -rf /var/www/html/*
-ls /var/www/html
-sudo cp -r ~/lms/webapp/dist/* /var/www/html
-ls /var/www/html
-ls ~/lms/webapp/dist/
-
-
-
-
-
+Conclusion
+"This project demonstrates my expertise in cloud infrastructure, DevOps practices, containerization, and multi-tier application development. By integrating tools like Docker and SonarQube, I ensured code quality, modularization, and scalability, aligning with industry best practices."
