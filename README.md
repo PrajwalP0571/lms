@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/00a49ab9-5746-4383-acc6-21624061a967)# Learning Management System
+# Learning Management System
 ![Multi-tire Application project Architect Diagram](https://github.com/user-attachments/assets/f7224123-9094-4eb0-9307-372c148d4eba)
 
 ## REACT JS - Presentation tier
