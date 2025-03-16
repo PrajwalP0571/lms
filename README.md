@@ -108,7 +108,7 @@ Copy code
 \q
 ```
 
-2️⃣ Step 2: Setup Application Layer
+### 2️⃣ Step 2: Setup Application Layer
 The application layer (API) is built using Node.js and manages business logic and client interactions.
 
 ### ✅ Install Node.js (Version 16):
@@ -212,7 +212,7 @@ Expected Output:
 json
 {"message":"success","mode":"dev"}
 
-4️⃣ Step 4: Build LMS Frontend
+### 4️⃣ Step 4: Build LMS Frontend
 The frontend is built using React.js.
 
 ✅ Configure the frontend:
@@ -234,7 +234,7 @@ npm install
 npm run build
 ```
 
-5️⃣ Step 5: Setup NGINX Web Server
+### 5️⃣ Step 5: Setup NGINX Web Server
 Install NGINX:
 ```bash
 sudo apt install nginx
