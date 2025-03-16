@@ -1,5 +1,6 @@
 # Learning Management System
-![Multi-Tier Application Deployment](https://github.com/user-attachments/assets/f0eae0c7-f050-4293-b149-5c81c50164a0) width="200"
+![Multi-Tier Application Deployment](https://github.com/user-attachments/assets/f0eae0c7-f050-4293-b149-5c81c50164a0)
+<img src="https://github.com/user-attachments/assets/f0eae0c7-f050-4293-b149-5c81c50164a0" width="200" />
 
 ## REACT JS - Presentation tier
 ## NODE JS - Application tier
