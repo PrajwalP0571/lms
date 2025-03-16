@@ -1,6 +1,5 @@
 # Learning Management System
 ![Multi-tire Application project Architect Diagram](https://github.com/user-attachments/assets/f7224123-9094-4eb0-9307-372c148d4eba)
-https://www.canva.com/design/DAGh5FJ99zo/zLFWf863IbxA9aW05vl-EQ/edit?utm_content=DAGh5FJ99zo&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 
 ## REACT JS - Presentation tier
 ## NODE JS - Application tier
