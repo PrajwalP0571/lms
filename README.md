@@ -1,5 +1,5 @@
 # Learning Management System
-<img src="https://github.com/user-attachments/assets/f0eae0c7-f050-4293-b149-5c81c50164a0" width="600" />
+<img src="https://github.com/user-attachments/assets/f0eae0c7-f050-4293-b149-5c81c50164a0" width="100%" />
 
 ## REACT JS - Presentation tier
 ## NODE JS - Application tier
