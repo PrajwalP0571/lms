@@ -66,21 +66,23 @@ The LMS will store data such as user information, course details, and progress i
 1. Update the system packages:
 ```bash
 sudo apt update
-bash```
+```
 
 2. Install PostgreSQL:
 ```bash
 sudo apt install postgresql postgresql-contrib
+```
 
 3. Start and enable the PostgreSQL service:
 ```bash
 sudo systemctl start postgresql
 sudo systemctl enable PostgreSQL
+```
 
 4. Verify PostgreSQL is running:
 ```bash
 sudo ss -ntpl
-
+```
 
 
 
