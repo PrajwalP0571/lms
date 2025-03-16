@@ -131,7 +131,7 @@ npm -v
 ### 3️⃣ Step 3: Build LMS API
 The backend is built using Node.js and connects to the PostgreSQL database.
 
-✅ Clone the LMS repository:
+### ✅ Clone the LMS repository:
 Switch to the home directory:
 ```bash
 cd ~
@@ -142,7 +142,7 @@ Clone the LMS source code:
 git clone -b dev https://github.com/PrajwalP0571/lms.git
 ```
 
-✅ Configure the API:
+### ✅ Configure the API:
 Create a .env file in the api directory:
 ```bash
 cd ~/lms/api
@@ -157,12 +157,12 @@ PORT=8080
 DATABASE_URL=postgresql://postgres:<your-password>@localhost:5432/postgres
 ```
 
-✅ Install dependencies:
+### ✅ Install dependencies:
 ```bash
 npm install
 ```
 
-✅ Generate Prisma client and push DB schema:
+### ✅ Generate Prisma client and push DB schema:
 Generate the database schema:
 ```bash
 sudo npx prisma generate
@@ -181,12 +181,12 @@ psql
 \q
 ```
 
-✅ Build LMS API:
+### ✅ Build LMS API:
 ```bash
 npm run build
 ```
 
-✅ Start LMS API using PM2:
+### ✅ Start LMS API using PM2:
 Install PM2 (process manager):
 ```bash
 sudo npm install -g pm2
@@ -215,7 +215,7 @@ json
 ### 4️⃣ Step 4: Build LMS Frontend
 The frontend is built using React.js.
 
-✅ Configure the frontend:
+### ✅ Configure the frontend:
 Create a .env file in the webapp directory:
 ```bash
 cd ~/lms/webapp
@@ -228,7 +228,7 @@ env
 VITE_API_URL=http://public-ip:8080/api
 ```
 
-✅ Build frontend:
+### ✅ Build frontend:
 ```bash
 npm install
 npm run build
@@ -252,14 +252,14 @@ sudo systemctl restart nginx
 Test frontend: 👉 http://public-ip
 
 🧪 Testing and Troubleshooting
-✅ Database:
+### ✅ Database:
 Stop and start PostgreSQL:
 ```bash
 sudo systemctl stop postgresql
 sudo systemctl start PostgreSQL
 ```
 
-✅ API:
+### ✅ API:
 Restart API using PM2:
 ```bash
 pm2 restart 0
@@ -270,7 +270,7 @@ Test API:
 curl http://localhost:8080/api
 ```
 
-✅ Frontend:
+### ✅ Frontend:
 Restart NGINX:
 ```bash
 sudo systemctl restart nginx
