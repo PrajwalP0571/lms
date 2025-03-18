@@ -116,6 +116,7 @@ The application layer (API) is built using Node.js and manages business logic an
 Add the Node.js repository:
 ```bash
 curl -sL https://deb.nodesource.com/setup_16.x | sudo bash -
+```
 
 Install Node.js:
 ```bash
