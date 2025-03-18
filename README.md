@@ -224,7 +224,7 @@ vi .env
 ```
 
 Add the following:
-'''bash
+```bash
 env
 VITE_API_URL=http://public-ip:8080/api
 ```
